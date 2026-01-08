@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.Design;
-
-class Program
+﻿class Program
 {
     static void Main(string[] args)
     {
@@ -20,7 +18,6 @@ class Program
                 Console.WriteLine("Invalid number. Please try again.");
                 continue;
             }
-
 
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Enter second number \nPress Enter when done: ");
