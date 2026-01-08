@@ -47,7 +47,7 @@
                 continue;
             }
 
-            if (!service.PerformCalculation(num1, operation ?? "", num2, out double result))
+            if (!service.PerformCalculation(num1, operation ?? "", num2, out double result, out string methodType))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Invalid operation or division by zero. Please try again.");
@@ -57,7 +57,7 @@
             else
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine($"Result: {result}");
+                Console.WriteLine($"Result: {result} ({methodType})");
                 Console.ResetColor();
                 continue;
             }
