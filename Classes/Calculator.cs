@@ -1,20 +1,20 @@
 public class Calculator
 {
     //* Integer-version of methods
-    int AddNumbers(int a, int b)
+    public int AddNumbers(int a, int b)
     {
         return a + b;
     }
 
-    int SubtractNumbers(int a, int b)
+    public int SubtractNumbers(int a, int b)
     {
         return a - b;
     }
-    int MultiplyNumbers(int a, int b)
+    public int MultiplyNumbers(int a, int b)
     {
         return a * b;
     }
-    bool TryDivideNumbers(int a, int b, out int result)
+    public bool TryDivideNumbers(int a, int b, out int result)
     {
         if (b == 0)
         {
@@ -28,19 +28,19 @@ public class Calculator
 
     //* Double-version of methods
 
-    double AddNumbers(double a, double b)
+    public double AddNumbers(double a, double b)
     {
         return a + b;
     }
-    double SubtractNumbers(double a, double b)
+    public double SubtractNumbers(double a, double b)
     {
         return a - b;
     }
-    double MultiplyNumbers(double a, double b)
+    public double MultiplyNumbers(double a, double b)
     {
         return a * b;
     }
-    bool TryDivideNumbers(double a, double b, out double result)
+    public bool TryDivideNumbers(double a, double b, out double result)
     {
         if (b == 0)
         {
