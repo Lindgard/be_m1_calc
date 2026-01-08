@@ -1,5 +1,3 @@
-using System.Runtime.CompilerServices;
-
 public class CalculatorService
 {
     private Calculator _calculator;
