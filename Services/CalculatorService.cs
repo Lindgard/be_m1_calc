@@ -27,8 +27,8 @@ public class CalculatorService
             case "add":
                 if (useIntVersion)
                 {
-                result = _calculator.AddNumbers((int)num1, (int)num2);
-                methodType = "int";
+                    result = _calculator.AddNumbers((int)num1, (int)num2);
+                    methodType = "int";
                 }
                 else
                 {
@@ -38,7 +38,7 @@ public class CalculatorService
                 return true;
             case "-":
             case "subtract":
-                if(useIntVersion)
+                if (useIntVersion)
                 {
                     result = _calculator.SubtractNumbers((int)num1, (int)num2);
                     methodType = "int";
@@ -51,7 +51,7 @@ public class CalculatorService
                 return true;
             case "*":
             case "multiply":
-                if(useIntVersion)
+                if (useIntVersion)
                 {
                     result = _calculator.MultiplyNumbers((int)num1, (int)num2);
                     methodType = "int";
@@ -64,7 +64,7 @@ public class CalculatorService
                 return true;
             case "/":
             case "divide":
-                if(useIntVersion)
+                if (useIntVersion)
                 {
                     return _calculator.TryDivideNumbers((int)num1, (int)num2, out result);
                 }

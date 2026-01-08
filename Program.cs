@@ -61,8 +61,6 @@
                 Console.ResetColor();
                 continue;
             }
-
         }
-
     }
 }
