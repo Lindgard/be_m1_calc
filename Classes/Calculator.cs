@@ -14,9 +14,16 @@ public class Calculator
     {
         return a * b;
     }
-    int DivideNumbers(int a, int b)
+    bool TryDivideNumbers(int a, int b, out int result)
     {
-        return a / b;
+        if (b == 0)
+        {
+            result = 0;
+            return false;
+        }
+
+        result = a / b;
+        return true;
     }
 
     //* Double-version of methods
@@ -33,8 +40,15 @@ public class Calculator
     {
         return a * b;
     }
-    double DivideNumbers(double a, double b)
+    bool TryDivideNumbers(double a, double b, out double result)
     {
-        return a / b;
+        if (b == 0)
+        {
+            result = 0.0;
+            return false;
+        }
+
+        result = a / b;
+        return true;
     }
 }
