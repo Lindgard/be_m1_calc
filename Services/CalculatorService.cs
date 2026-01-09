@@ -23,6 +23,51 @@ public class CalculatorService
         return double.TryParse(input, out number);
     }
 
+    //* Private list of past calculations
+    private List<string> _calculationHistory = new List<string>();
+
+    //* Adds a calculation to the history list
+    //* If the history list is longer than 3, removes the oldest calculation
+    //* Always uses the symbol version of the operation (+, -, *, /) regardless of input
+    private void AddToCalculationHistory(double num1, string operation, double num2, double result, string methodType)
+    {
+        string operationSymbol = GetOperationSymbol(operation);
+        string entry = $"{num1} {operationSymbol} {num2} = {result} ({methodType})";
+        _calculationHistory.Add(entry);
+
+        if (_calculationHistory.Count > 3)
+        {
+            _calculationHistory.RemoveAt(0);
+        }
+    }
+    //* Public method to get the calculation history
+    public IEnumerable<string> GetCalculationHistory()
+    {
+        return _calculationHistory;
+    }
+
+    //* Private method to get the symbol version of the operation
+    private string GetOperationSymbol(string operation)
+    {
+        switch (operation.ToLower())
+        {
+            case "add":
+            case "+":
+                return "+";
+            case "subtract":
+            case "-":
+                return "-";
+            case "multiply":
+            case "*":
+                return "*";
+            case "divide":
+            case "/":
+                return "/";
+            default:
+                return operation; //* Fallback to original input if not a valid operation
+        }
+    }
+
     //* Performs the calculation based on operation type
     //* Automatically selects integer or double version based on input numbers
     //* Returns false if operation is invalid or division by zero occurs
@@ -56,6 +101,8 @@ public class CalculatorService
                     result = _calculator.AddNumbers(num1, num2);
                     methodType = "double";
                 }
+
+                AddToCalculationHistory(num1, operation, num2, result, methodType);
                 return true;
 
             //* Subtraction operation - supports both "-" and "subtract" as input
@@ -73,6 +120,8 @@ public class CalculatorService
                     result = _calculator.SubtractNumbers(num1, num2);
                     methodType = "double";
                 }
+
+                AddToCalculationHistory(num1, operation, num2, result, methodType);
                 return true;
 
             //* Multiplication operation - supports both "*" and "multiply" as input
@@ -90,6 +139,8 @@ public class CalculatorService
                     result = _calculator.MultiplyNumbers(num1, num2);
                     methodType = "double";
                 }
+
+                AddToCalculationHistory(num1, operation, num2, result, methodType);
                 return true;
 
             //* Division operation - supports both "/" and "divide" as input
@@ -98,15 +149,34 @@ public class CalculatorService
                 if (useIntVersion)
                 {
                     //* Cast doubles to integers and use integer version
-                    //* TryDivideNumbers returns false if division by zero
-                    return _calculator.TryDivideNumbers((int)num1, (int)num2, out result);
+                    bool success = _calculator.TryDivideNumbers((int)num1, (int)num2, out result);
+                    if (!success)
+                    {
+                        //* Division by zero, return false and clear methodType, no history entry.
+                        methodType = "";
+                        return false;
+                    }
+
+                    methodType = "int";
+                    AddToCalculationHistory(num1, operation, num2, result, methodType);
+                    return true;
                 }
                 else
                 {
                     //* Use double version for decimal numbers
-                    //* TryDivideNumbers returns false if division by zero
-                    return _calculator.TryDivideNumbers(num1, num2, out result);
+                    bool success = _calculator.TryDivideNumbers(num1, num2, out result);
+                    if (!success)
+                    {
+                        //* Division by zero, return false and clear methodType, no history entry.
+                        methodType = "";
+                        return false;
+                    }
+
+                    methodType = "double";
+                    AddToCalculationHistory(num1, operation, num2, result, methodType);
+                    return true;
                 }
+                
 
             //* Invalid operation - return false to indicate failure
             default:
