@@ -1,6 +1,4 @@
-﻿//* Main entry point of the calculator application
-//* This class handles user interaction (input/output) and delegates business logic to CalculatorService
-class Program
+﻿class Program
 {
     static void Main(string[] args)
     {
@@ -79,6 +77,15 @@ class Program
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.WriteLine($"Result: {result} ({methodType})");
                 Console.ResetColor();
+
+                //* Optional print of calculation history
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Calculation history:");
+                Console.ResetColor();
+                foreach (var line in service.GetCalculationHistory())
+                {
+                    Console.WriteLine(line);
+                }
                 continue;
             }
         }
