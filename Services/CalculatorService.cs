@@ -2,17 +2,6 @@
 //* Handles input validation, method selection, and error handling
 public class CalculatorService
 {
-    //* Private field to hold the Calculator instance
-    //* This is dependency injection - CalculatorService depends on Calculator
-    private Calculator _calculator;
-
-    //* Constructor - called when CalculatorService is created
-    //* Initializes the Calculator instance
-    public CalculatorService()
-    {
-        _calculator = new Calculator();
-    }
-
     //* Validates and parses user input string to a double number
     //* Returns true if parsing succeeds, false if input is invalid
     //* Uses 'out' parameter to return the parsed number
@@ -92,13 +81,13 @@ public class CalculatorService
                 if (useIntVersion)
                 {
                     //* Cast doubles to integers and use integer version
-                    result = _calculator.AddNumbers((int)num1, (int)num2);
+                    result = Calculator.AddNumbers((int)num1, (int)num2);
                     methodType = "int";
                 }
                 else
                 {
                     //* Use double version for decimal numbers
-                    result = _calculator.AddNumbers(num1, num2);
+                    result = Calculator.AddNumbers(num1, num2);
                     methodType = "double";
                 }
 
@@ -111,13 +100,13 @@ public class CalculatorService
                 if (useIntVersion)
                 {
                     //* Cast doubles to integers and use integer version
-                    result = _calculator.SubtractNumbers((int)num1, (int)num2);
+                    result = Calculator.SubtractNumbers((int)num1, (int)num2);
                     methodType = "int";
                 }
                 else
                 {
                     //* Use double version for decimal numbers
-                    result = _calculator.SubtractNumbers(num1, num2);
+                    result = Calculator.SubtractNumbers(num1, num2);
                     methodType = "double";
                 }
 
@@ -130,13 +119,13 @@ public class CalculatorService
                 if (useIntVersion)
                 {
                     //* Cast doubles to integers and use integer version
-                    result = _calculator.MultiplyNumbers((int)num1, (int)num2);
+                    result = Calculator.MultiplyNumbers((int)num1, (int)num2);
                     methodType = "int";
                 }
                 else
                 {
                     //* Use double version for decimal numbers
-                    result = _calculator.MultiplyNumbers(num1, num2);
+                    result = Calculator.MultiplyNumbers(num1, num2);
                     methodType = "double";
                 }
 
@@ -149,7 +138,7 @@ public class CalculatorService
                 if (useIntVersion)
                 {
                     //* Cast doubles to integers and use integer version
-                    bool success = _calculator.TryDivideNumbers((int)num1, (int)num2, out result);
+                    bool success = Calculator.TryDivideNumbers((int)num1, (int)num2, out result);
                     if (!success)
                     {
                         //* Division by zero, return false and clear methodType, no history entry.
@@ -164,7 +153,7 @@ public class CalculatorService
                 else
                 {
                     //* Use double version for decimal numbers
-                    bool success = _calculator.TryDivideNumbers(num1, num2, out result);
+                    bool success = Calculator.TryDivideNumbers(num1, num2, out result);
                     if (!success)
                     {
                         //* Division by zero, return false and clear methodType, no history entry.
@@ -176,7 +165,7 @@ public class CalculatorService
                     AddToCalculationHistory(num1, operation, num2, result, methodType);
                     return true;
                 }
-                
+
 
             //* Invalid operation - return false to indicate failure
             default:
