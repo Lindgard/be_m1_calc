@@ -111,7 +111,7 @@ CLASS CalculatorService
                 RETURN "/"
             DEFAULT
                 RETURN operation
-        END SITCH
+        END SWITCH
     END FUNCTION
 
     //Perform the requested operation
