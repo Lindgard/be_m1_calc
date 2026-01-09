@@ -21,4 +21,61 @@ public class Calculator
     {
         return $"{Number1} {Operation} {Number2} = {Result} ({MethodType})";
     }
+
+    //* Static methods for performing operations
+    public static int AddNumbers(int a, int b)
+    {
+        return a + b;
+    }
+
+    public static int SubtractNumbers(int a, int b)
+    {
+        return a - b;
+    }
+
+    public static int MultiplyNumbers(int a, int b)
+    {
+        return a * b;
+    }
+
+    public static bool TryDivideNumbers(int a, int b, out int result)
+    {
+        if (b == 0)
+        {
+            result = 0;
+            return false;
+        }
+        
+        result = a / b;
+        return true;
+    }
+
+    //* Double-version of methods
+
+    public static double AddNumbers(double a, double b)
+    {
+        return a + b;
+    }
+
+    public static double SubtractNumbers(double a, double b)
+    {
+        return a - b;
+    }
+
+    public static double MultiplyNumbers(double a, double b)
+    {
+        return a * b;
+    }
+
+    public static bool TryDivideNumbers(double a, double b, out double result)
+    {
+        if (b == 0)
+        {
+            result = 0.0;
+            return false;
+        }
+
+        result = a / b;
+        return true;
+    }
 }
