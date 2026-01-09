@@ -4,9 +4,9 @@ public class Calculator
 {
     public double Number1 { get; set; }
     public double Number2 { get; set; }
-    public string Operation { get; set; }
+    public string Operation { get; set; } = "";
     public double Result { get; set; }
-    public string MethodType { get; set; }
+    public string MethodType { get; set; } = "";
 
     //* Constructor to create calculation model
     public Calculator(double number1, double number2, string operation)
@@ -45,7 +45,7 @@ public class Calculator
             result = 0;
             return false;
         }
-        
+
         result = a / b;
         return true;
     }
